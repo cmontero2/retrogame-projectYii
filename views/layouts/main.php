@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => "Retrogame",//Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,9 +38,16 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Secciones', 'url' => ['/secciones'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Categorias', 'url' => ['/categorias'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Entradas', 'url' => ['/entradas'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Comentarios', 'url' => ['/comentarios'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Juegos', 'url' => ['/juegos'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'NivelForo', 'url' => ['/nivel-foro'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Roles', 'url' => ['/roles'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'JuegosCategoria', 'url' => ['/juegos-categoria'],'visible'=> !Yii::$app->user->isGuest],
+            ['label' => 'Usuarios', 'url' => ['/usuarios'],'visible'=> !Yii::$app->user->isGuest],
+
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

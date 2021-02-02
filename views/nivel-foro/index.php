@@ -14,9 +14,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Nivel Foro', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php
+        if(Yii::$app->user->identity){
+            if(Yii::$app->user->identity->username == 'admin'){ 
+                echo Html::a('Crear Nivel Foro', ['create'], ['class' => 'btn btn-success']);
+            }
+        }
+    ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -24,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'nombre',

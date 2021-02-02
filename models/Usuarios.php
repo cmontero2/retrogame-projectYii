@@ -88,7 +88,7 @@ class Usuarios extends \yii\db\ActiveRecord
      */
     public function getEntradas()
     {
-        return $this->hasMany(Entrada::className(), ['usuario_id' => 'id']);
+        return $this->hasMany(Entradas::className(), ['usuario_id' => 'id']);
     }
 
     /**
@@ -98,7 +98,7 @@ class Usuarios extends \yii\db\ActiveRecord
      */
     public function getJuegos()
     {
-        return $this->hasMany(Juego::className(), ['empresa_id' => 'id']);
+        return $this->hasMany(Juegos::className(), ['empresa_id' => 'id']);
     }
 
     /**
@@ -108,7 +108,7 @@ class Usuarios extends \yii\db\ActiveRecord
      */
     public function getJuegoCategorias()
     {
-        return $this->hasMany(JuegoCategoria::className(), ['usuario_id' => 'id']);
+        return $this->hasMany(JuegosCategoria::className(), ['usuario_id' => 'id']);
     }
 
     /**
@@ -138,6 +138,6 @@ class Usuarios extends \yii\db\ActiveRecord
      */
     public function getUsuarioJuegos()
     {
-        return $this->hasMany(UsuarioJuego::className(), ['usuario_id' => 'id']);
+        return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
 }
