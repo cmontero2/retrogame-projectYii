@@ -49,6 +49,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //aqui puedo meter personalizacion de url
             ],
         ],
         

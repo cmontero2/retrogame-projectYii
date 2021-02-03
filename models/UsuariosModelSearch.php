@@ -46,6 +46,7 @@ class UsuariosModelSearch extends Usuarios
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pageSize'=>5] //paginacion
         ]);
 
         $this->load($params);
