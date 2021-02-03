@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nivel_foro_id',
             'user',
             'nombre',
-            'contraseña',
+            'password',
             'email:email',
             'nacimiento',
             'estado',
