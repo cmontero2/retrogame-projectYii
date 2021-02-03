@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\models\Roles;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuariosModelSearch */
@@ -21,6 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         }
         
+        /*
+        $form = ActiveForm::begin();
+        $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
+        echo $form->field($model, 'rol_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+        ActiveForm::end();
+        */
     ?>
     
 
