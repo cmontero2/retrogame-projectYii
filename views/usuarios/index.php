@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use app\models\Roles;
+use app\models\Usuarios;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo Html::a('Crear Usuarios', ['create'], ['class' => 'btn btn-success']); 
             }
         }
+        
         
         /*
         $form = ActiveForm::begin();

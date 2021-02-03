@@ -140,4 +140,5 @@ class Usuarios extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
+
 }
