@@ -35,12 +35,14 @@ class UsuariosController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Usuarios();
         $searchModel = new UsuariosModelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model
         ]);
     }
 
@@ -124,5 +126,4 @@ class UsuariosController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

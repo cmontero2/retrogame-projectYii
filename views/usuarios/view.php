@@ -10,6 +10,8 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+//var_dump($model);
+//echo "rol ".$model->rol_id->nombre;
 ?>
 <div class="usuarios-view">
 
@@ -20,12 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Seguro que quieres borrar este item?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
-
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

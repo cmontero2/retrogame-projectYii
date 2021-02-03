@@ -12,7 +12,7 @@ use Yii;
  * @property int $nivel_foro_id
  * @property string $user
  * @property string|null $nombre
- * @property string $contraseña
+ * @property string $password
  * @property string $email
  * @property string|null $nacimiento
  * @property string $estado
@@ -45,11 +45,11 @@ class Usuarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rol_id', 'nivel_foro_id', 'user', 'contraseña', 'email', 'estado', 'token'], 'required'],
+            [['rol_id', 'nivel_foro_id', 'user', 'password', 'email', 'estado', 'token'], 'required'],
             [['rol_id', 'nivel_foro_id', 'telefono'], 'integer'],
             [['nacimiento'], 'safe'],
             [['user', 'poblacion'], 'string', 'max' => 30],
-            [['nombre', 'contraseña', 'email', 'token'], 'string', 'max' => 60],
+            [['nombre', 'password', 'email', 'token'], 'string', 'max' => 60],
             [['estado'], 'string', 'max' => 1],
             [['CIF'], 'string', 'max' => 9],
             [['direccion'], 'string', 'max' => 90],
@@ -69,7 +69,7 @@ class Usuarios extends \yii\db\ActiveRecord
             'nivel_foro_id' => 'Nivel Foro ID',
             'user' => 'User',
             'nombre' => 'Nombre',
-            'contraseña' => 'Contraseña',
+            'password' => 'Password',
             'email' => 'Email',
             'nacimiento' => 'Nacimiento',
             'estado' => 'Estado',
@@ -141,4 +141,5 @@ class Usuarios extends \yii\db\ActiveRecord
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
 
+    
 }

@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         }
         
-        
         /*
         $form = ActiveForm::begin();
         $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');

@@ -18,7 +18,7 @@ class UsuariosModelSearch extends Usuarios
     {
         return [
             [['id', 'rol_id', 'nivel_foro_id', 'telefono'], 'integer'],
-            [['user', 'nombre', 'contraseña', 'email', 'nacimiento', 'estado', 'poblacion', 'CIF', 'direccion', 'token'], 'safe'],
+            [['user', 'nombre', 'password', 'email', 'nacimiento', 'estado', 'poblacion', 'CIF', 'direccion', 'token'], 'safe'],
         ];
     }
 
@@ -67,7 +67,7 @@ class UsuariosModelSearch extends Usuarios
 
         $query->andFilterWhere(['like', 'user', $this->user])
             ->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'contraseña', $this->contraseña])
+            ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'estado', $this->estado])
             ->andFilterWhere(['like', 'poblacion', $this->poblacion])
