@@ -65,18 +65,18 @@ class Usuarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'rol_id' => 'Rol ID',
-            'nivel_foro_id' => 'Nivel Foro ID',
-            'user' => 'User',
+            'rol_id' => 'Rol',
+            'nivel_foro_id' => 'Nivel Foro',
+            'user' => 'Usuario',
             'nombre' => 'Nombre',
-            'password' => 'Password',
+            'password' => 'Contraseña',
             'email' => 'Email',
-            'nacimiento' => 'Nacimiento',
+            'nacimiento' => 'Fecha de nacimiento',
             'estado' => 'Estado',
-            'poblacion' => 'Poblacion',
-            'CIF' => 'Cif',
-            'direccion' => 'Direccion',
-            'telefono' => 'Telefono',
+            'poblacion' => 'Población',
+            'CIF' => 'CIF',
+            'direccion' => 'Dirección',
+            'telefono' => 'Teléfono',
             'token' => 'Token',
         ];
     }
