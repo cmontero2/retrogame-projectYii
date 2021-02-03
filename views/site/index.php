@@ -10,7 +10,7 @@ $this->title = 'My Yii Application';
         <h1>Bienvenido!</h1>
 
         <p class="lead">Estás en el backend de: Retrogame</p>
-        <img src="../../assets/img/logo-Retrogame.png"></img>
+        <img src="../../web/img/logo-Retrogame.png"></img>
         
     </div>
 
