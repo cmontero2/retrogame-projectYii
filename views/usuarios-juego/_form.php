@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Usuarios;
+use app\models\Juegos;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosJuego */
@@ -12,14 +15,22 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'juego_id')->textInput() ?>
+    <?php    
+        $options=ArrayHelper::map(Juegos::find()->asArray()->all(),'id','nombre');
+        echo $form->field($model, 'juego_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+    ?>
 
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
+    <?php    
+        $options=ArrayHelper::map(Usuarios::find()->asArray()->all(),'id','user');
+        echo $form->field($model, 'usuario_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+    ?>
 
-    <?= $form->field($model, 'fecha_id')->textInput() ?>
+<?= $form->field($model, 'fecha_id')->widget(\yii\jui\DatePicker::classname(), [
+        'dateFormat' => 'yyyy-MM-dd',   
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

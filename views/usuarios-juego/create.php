@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosJuego */
 
-$this->title = 'Create Usuarios Juego';
+$this->title = 'Crear Usuarios Juego';
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios Juegos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
