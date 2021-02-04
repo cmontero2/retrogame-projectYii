@@ -46,6 +46,7 @@ class RolesModelSearch extends Roles
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pageSize'=>5] //paginacion
         ]);
 
         $this->load($params);

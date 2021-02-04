@@ -46,6 +46,7 @@ class UsuariosJuegoModelSearch extends UsuariosJuego
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pageSize'=>5] //paginacion
         ]);
 
         $this->load($params);
