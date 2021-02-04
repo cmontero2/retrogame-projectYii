@@ -25,12 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         }
         
-        /*
-        $form = ActiveForm::begin();
-        $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
-        echo $form->field($model, 'rol_id')->dropDownList($options,['prompt'=>'Seleccione...']);
-        ActiveForm::end();
-        */
+        
     ?>
     
 

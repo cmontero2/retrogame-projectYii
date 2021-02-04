@@ -12,10 +12,12 @@ use Yii;
  * @property string $descripcion
  * @property int $visitas
  * @property int $empresa_id
+ * @property string $nombre_archivo
+ * @property string $estado
  *
  * @property Usuarios $empresa
- * @property JuegosCategoria[] $juegoCategorias
- * @property Secciones[] $seccions
+ * @property JuegoCategoria[] $juegoCategorias
+ * @property Seccion[] $seccions
  * @property UsuariosJuego[] $usuarioJuegos
  */
 class Juegos extends \yii\db\ActiveRecord
@@ -34,10 +36,12 @@ class Juegos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'descripcion', 'visitas', 'empresa_id'], 'required'],
+            [['nombre', 'descripcion', 'visitas', 'empresa_id', 'nombre_archivo', 'estado'], 'required'],
             [['visitas', 'empresa_id'], 'integer'],
             [['nombre'], 'string', 'max' => 60],
             [['descripcion'], 'string', 'max' => 400],
+            [['nombre_archivo'], 'string', 'max' => 30],
+            [['estado'], 'string', 'max' => 1],
             [['empresa_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['empresa_id' => 'id']],
         ];
     }
@@ -53,6 +57,8 @@ class Juegos extends \yii\db\ActiveRecord
             'descripcion' => 'Descripcion',
             'visitas' => 'Visitas',
             'empresa_id' => 'Empresa ID',
+            'nombre_archivo' => 'Nombre Archivo',
+            'estado' => 'Estado',
         ];
     }
 
@@ -73,7 +79,7 @@ class Juegos extends \yii\db\ActiveRecord
      */
     public function getJuegoCategorias()
     {
-        return $this->hasMany(JuegosCategoria::className(), ['juego_id' => 'id']);
+        return $this->hasMany(JuegoCategoria::className(), ['juego_id' => 'id']);
     }
 
     /**
@@ -83,7 +89,7 @@ class Juegos extends \yii\db\ActiveRecord
      */
     public function getSeccions()
     {
-        return $this->hasMany(Secciones::className(), ['juego_id' => 'id']);
+        return $this->hasMany(Seccion::className(), ['juego_id' => 'id']);
     }
 
     /**
@@ -91,7 +97,7 @@ class Juegos extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUsuarioJuegos()
+    public function getUsuariosJuegos()
     {
         return $this->hasMany(UsuariosJuego::className(), ['juego_id' => 'id']);
     }

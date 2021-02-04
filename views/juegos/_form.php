@@ -20,6 +20,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'empresa_id')->textInput() ?>
 
+    <?= $form->field($model, 'nombre_archivo')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

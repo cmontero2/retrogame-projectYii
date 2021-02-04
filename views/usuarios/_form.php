@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Roles;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -12,10 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'rol_id')->textInput() ?>
-
-    <?= $form->field($model, 'nivel_foro_id')->textInput() ?>
-
+    <?php    
+        $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
+        echo $form->field($model, 'rol_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+    ?>
     <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

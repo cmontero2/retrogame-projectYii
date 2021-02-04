@@ -33,8 +33,8 @@ class UsuariosJuego extends \yii\db\ActiveRecord
             [['juego_id', 'usuario_id', 'fecha_id'], 'required'],
             [['juego_id', 'usuario_id'], 'integer'],
             [['fecha_id'], 'safe'],
-            [['juego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Juego::className(), 'targetAttribute' => ['juego_id' => 'id']],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [['juego_id'], 'exist', 'skipOnError' => true, 'targetClass' => Juegos::className(), 'targetAttribute' => ['juego_id' => 'id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -55,9 +55,9 @@ class UsuariosJuego extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getJuego()
+    public function getJuegos()
     {
-        return $this->hasOne(Juego::className(), ['id' => 'juego_id']);
+        return $this->hasOne(Juegos::className(), ['id' => 'juego_id']);
     }
 
     /**
@@ -67,6 +67,6 @@ class UsuariosJuego extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuario::className(), ['id' => 'usuario_id']);
+        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
     }
 }
