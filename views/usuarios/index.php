@@ -1,11 +1,12 @@
 <?php
 
+use Yii;
+use app\models\Roles;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
-use app\models\Roles;
 use app\models\Usuarios;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuariosModelSearch */
@@ -37,7 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             'id',
-            'rol_id',
+            ['attribute'=>'rol_id',
+                'filter'=>Roles::lookup(),
+                'value'=>function($data) {
+                return $data->rol->nombre;
+                }
+            ],
             'nivel_foro_id',
             'user',
             'nombre',

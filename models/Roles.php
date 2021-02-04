@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Usuario;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "rol".
@@ -53,4 +55,9 @@ class Roles extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Usuario::className(), ['rol_id' => 'id']);
     }
+
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
+    }
+      
 }

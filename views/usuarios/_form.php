@@ -18,8 +18,8 @@ use app\models\Roles;
         echo $form->field($model, 'nivel_foro_id')->dropDownList($options,['prompt'=>'Seleccione...']);
     ?>
     <?php    
-        $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
-        echo $form->field($model, 'rol_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+        //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
+        echo $form->field($model, 'rol_id')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...']);
     ?>
     <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 

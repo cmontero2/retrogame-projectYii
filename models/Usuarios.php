@@ -140,6 +140,14 @@ class Usuarios extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
-
+    
+    public function beforeSave($insert){
+        //guardar md5 pass
+        if(strlen($this->password) != 32){
+            $this->password= md5($this->password);
+        }
+        return parent::beforeSave($insert);
+    }
+    
     
 }
