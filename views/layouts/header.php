@@ -207,15 +207,15 @@ use yii\helpers\Html;
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<?= Html::img('@web/img/user2-160x160.jpg', ['class' => 'user-image', 'alt'=>'User Image']) ?>
-                  <span class="hidden-xs">Alexander Pierce</span>
+					<?= Html::img('@web/img/profileuser.jpg', ['class' => 'user-image', 'alt'=>'User Image']) ?>
+                  <span class="hidden-xs">Admin</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <?= Html::img('@web/img/user2-160x160.jpg', ['class' => 'img-circle', 'alt'=>'User Image']) ?>
+                    <?= Html::img('@web/img/profileuser.jpg', ['class' => 'img-circle', 'alt'=>'User Image']) ?>
                     <p>
-                      Alexander Pierce - Web Developer
+                      Admin - Web Developer
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -234,10 +234,10 @@ use yii\helpers\Html;
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="#" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="#" class="btn btn-default btn-flat">Desloguear</a>
                     </div>
                   </li>
                 </ul>

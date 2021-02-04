@@ -11,10 +11,10 @@ use yii\helpers\Url;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-<?= Html::img('@web/img/user2-160x160.jpg', ['class' => 'img-circle', 'alt' => 'User Image']) ?>
+<?= Html::img('@web/img/profileuser.jpg', ['class' => 'img-circle', 'alt' => 'User Image']) ?>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Administrador</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -35,33 +35,89 @@ use yii\helpers\Url;
                     'options' => ['class' => 'sidebar-menu'],
                     'items' => [
                         ['label' => 'Menu', 'options' => ['class' => 'header']],
-                        ['label' => 'Dashboard', 'icon' => 'fa fa-dashboard', 
+                        ['label' => 'Inicio', 'icon' => 'fa fa-dashboard', 
                             'url' => ['/'], 'active' => $this->context->route == 'site/index'
                         ],
                         [
-                            'label' => 'Master',
+                            'label' => 'Foro',
                             'icon' => 'fa fa-database',
-                            'url' => '#',
+                            'url' => '/',
                             'items' => [
                                 [
-                                    'label' => 'Master1',
+                                    'label' => 'Secciones',
                                     'icon' => 'fa fa-database',
-                                    'url' => '?r=master1/',
-				    'active' => $this->context->route == 'master1/index'
+                                    'url' => 'secciones',
+				    'active' => $this->context->route == ''
                                 ],
                                 [
-                                    'label' => 'Master2',
+                                    'label' => 'Entradas',
                                     'icon' => 'fa fa-database',
-                                    'url' => '?r=master2/',
-				    'active' => $this->context->route == 'master2/index'
+                                    'url' => 'entradas',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Comentarios',
+                                    'icon' => 'fa fa-database',
+                                    'url' => 'comentarios',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Nivel foro',
+                                    'icon' => 'fa fa-database',
+                                    'url' => 'nivel-foro',
+				    'active' => $this->context->route == ''
                                 ]
                             ]
                         ],
                         [
-                            'label' => 'Users',
+                            'label' => 'Usuarios',
                             'icon' => 'fa fa-users',
-                            'url' => ['/user'],
-                            'active' => $this->context->route == 'user/index',
+                            'url' => '/',
+                            'items' => [
+                                [
+                                    'label' => 'Usuarios',
+                                    'icon' => 'fa fa-users',
+                                    'url' => 'usuarios',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Roles',
+                                    'icon' => 'fa fa-users',
+                                    'url' => 'roles',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Usuario y juego',
+                                    'icon' => 'fa fa-users',
+                                    'url' => 'usuarios-juego',
+				    'active' => $this->context->route == ''
+                                ]
+                            ]
+                        ],
+                        [
+                            'label' => 'Juegos',
+                            'icon' => 'fa fa-gamepad',
+                            'url' => '/',
+                            'items' => [
+                                [
+                                    'label' => 'Juegos',
+                                    'icon' => 'fa fa-gamepad',
+                                    'url' => 'juegos',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Categoria',
+                                    'icon' => 'fa fa-gamepad',
+                                    'url' => 'categorias',
+				    'active' => $this->context->route == ''
+                                ],
+                                [
+                                    'label' => 'Categorias de juegos',
+                                    'icon' => 'fa fa-gamepad',
+                                    'url' => 'juegos-categoria',
+				    'active' => $this->context->route == ''
+                                ]
+                            ]
                         ],
                         ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
                         ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
