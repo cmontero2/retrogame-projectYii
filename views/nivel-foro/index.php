@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\NivelForoModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nivel Foros';
+$this->title = 'Nivel Foro';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nivel-foro-index">

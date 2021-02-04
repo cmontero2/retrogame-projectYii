@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -141,13 +143,18 @@ class Usuarios extends \yii\db\ActiveRecord
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
     
+    //antes de guardar, crea 
     public function beforeSave($insert){
-        //guardar md5 pass
+        //guardar md5 pass si la contraseña no tiene 32 caracteres
         if(strlen($this->password) != 32){
             $this->password= md5($this->password);
         }
         return parent::beforeSave($insert);
     }
     
+    //permite buscar una caracteristica especifica de la tabla
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
+    }
     
 }

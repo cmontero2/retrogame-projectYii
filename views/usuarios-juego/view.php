@@ -3,10 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use app\models\Juegos;
+use app\models\Usuarios;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosJuego */
 
-$this->title = $model->id;
+$this->title = "Datos";
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios Juegos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -20,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '¿Seguro que quiere borrar este item??',
+                'confirm' => '¿Seguro que quiere borrar este item?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,9 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'juego_id',
-            'usuario_id',
+            ['attribute'=>'juego_id',
+                'filter'=>Juegos::lookup(),
+                'value'=>function($data) {
+                return $data->juegos->nombre;
+                }
+            ],
+            ['attribute'=>'usuario_id',
+                'filter'=>Usuarios::lookup(),
+                'value'=>function($data) {
+                return $data->usuario->user;
+                }
+            ],
             'fecha_id',
         ],
     ]) ?>

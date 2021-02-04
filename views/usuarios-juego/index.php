@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Juegos;
+use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuariosJuegoModelSearch */
@@ -24,11 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'juego_id',
-            'usuario_id',
+            ['attribute'=>'juego_id',
+                'filter'=>Juegos::lookup(),
+                'value'=>function($data) {
+                return $data->juegos->nombre;
+                }
+            ],
+            ['attribute'=>'usuario_id',
+                'filter'=>Usuarios::lookup(),
+                'value'=>function($data) {
+                return $data->usuario->user;
+                }
+            ],
             'fecha_id',
 
             ['class' => 'yii\grid\ActionColumn'],

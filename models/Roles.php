@@ -56,6 +56,7 @@ class Roles extends \yii\db\ActiveRecord
         return $this->hasMany(Usuario::className(), ['rol_id' => 'id']);
     }
 
+    //permite buscar una caracteristica especifica de la tabla
     public static function lookup($condition=''){
         return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }

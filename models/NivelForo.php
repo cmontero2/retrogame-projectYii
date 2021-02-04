@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -55,5 +57,10 @@ class NivelForo extends \yii\db\ActiveRecord
     public function getUsuarios()
     {
         return $this->hasMany(Usuario::className(), ['nivel_foro_id' => 'id']);
+    }
+
+    //permite buscar una caracteristica especifica de la tabla
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }
 }

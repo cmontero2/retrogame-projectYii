@@ -1,5 +1,6 @@
 <?php
 
+use app\models\NivelForo;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -14,8 +15,8 @@ use app\models\Roles;
 
     <?php $form = ActiveForm::begin(); ?>
     <?php    
-        $options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
-        echo $form->field($model, 'nivel_foro_id')->dropDownList($options,['prompt'=>'Seleccione...']);
+        //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
+        echo $form->field($model, 'nivel_foro_id')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...']);
     ?>
     <?php    
         //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
@@ -44,7 +45,7 @@ use app\models\Roles;
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
-    <?php var_dump($model->geterrors()); ?>
+    <?php //var_dump($model->geterrors()); ?>
     <?php ActiveForm::end(); ?>
 
 </div>

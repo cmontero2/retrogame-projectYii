@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\NivelForo;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\NivelForo */
@@ -12,7 +13,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nombre')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...']); ?>
 
     <?= $form->field($model, 'puntos')->textInput() ?>
 

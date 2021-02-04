@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -100,5 +102,10 @@ class Juegos extends \yii\db\ActiveRecord
     public function getUsuariosJuegos()
     {
         return $this->hasMany(UsuariosJuego::className(), ['juego_id' => 'id']);
+    }
+
+    //permite buscar una caracteristica especifica de la tabla
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }
 }

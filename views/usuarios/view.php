@@ -1,5 +1,6 @@
 <?php
-
+use app\models\NivelForo;
+use app\models\Roles;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -31,12 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'rol_id',
-            'nivel_foro_id',
+            ['attribute'=>'rol_id',
+                'filter'=>Roles::lookup(),
+                'value'=>function($data) {
+                return $data->rol->nombre;
+                }
+            ],
+            ['attribute'=>'nivel_foro_id',
+                'filter'=>NivelForo::lookup(),
+                'value'=>function($data) {
+                return $data->nivelForo->nombre;
+                }
+            ],
             'user',
             'nombre',
-            'password',
             'email:email',
             'nacimiento',
             'estado',
@@ -44,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'CIF',
             'direccion',
             'telefono',
-            'token',
+            'estado',
         ],
     ]) ?>
 
