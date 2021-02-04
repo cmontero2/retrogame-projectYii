@@ -26,8 +26,6 @@ use app\models\Roles;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nacimiento')->textInput() ?>
-
     <?= $form->field($model, 'poblacion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'CIF')->textInput(['maxlength' => true]) ?>
@@ -35,6 +33,10 @@ use app\models\Roles;
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'telefono')->textInput() ?>
+    
+    <?= $form->field($model, 'nacimiento')->widget(\yii\jui\DatePicker::classname(), [
+        'dateFormat' => 'yyyy-MM-dd',   
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
