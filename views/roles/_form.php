@@ -13,7 +13,7 @@ use app\models\Roles;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...']); ?>
+    <?= $form->field($model, 'nombre')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:15%']); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

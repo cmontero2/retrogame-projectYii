@@ -12,13 +12,15 @@ use app\models\NivelForo;
 <div class="nivel-foro-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'nombre')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...']); ?>
-
-    <?= $form->field($model, 'puntos')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-md-3">
+        <?= $form->field($model, 'nombre')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']); ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'puntos')->textInput(['style'=>'width:50%']) ?>
+    </div>
+    
+    <div class="col-md-12 form-group">
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

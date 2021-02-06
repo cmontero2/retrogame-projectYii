@@ -237,7 +237,7 @@ use yii\helpers\Html;
                       <a href="#" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Desloguear</a>
+                      <a href="layouts/login" class="btn btn-default btn-flat">Desloguear</a>
                     </div>
                   </li>
                 </ul>
