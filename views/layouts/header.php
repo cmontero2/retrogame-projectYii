@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 <header class="main-header">
@@ -204,6 +205,57 @@ use yii\helpers\Html;
                   </li>
                 </ul>
               </li>
+              <?php 
+                if(Yii::$app->user->identity){
+                  if(Yii::$app->user->identity->username == 'admin'){  ?>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <?= Html::img('@web/img/profileuser.jpg', ['class' => 'user-image', 'alt'=>'User Image']) ?>
+                        <span class="hidden-xs">Admin</span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                          <?= Html::img('@web/img/profileuser.jpg', ['class' => 'img-circle', 'alt'=>'User Image']) ?>
+                          <p>
+                            Administrador - Web Developer
+                            <small>Member since Nov. 2012</small>
+                          </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <div class="col-xs-4 text-center">
+                            <a href="#">Followers</a>
+                          </div>
+                          <div class="col-xs-4 text-center">
+                            <a href="#">Sales</a>
+                          </div>
+                          <div class="col-xs-4 text-center">
+                            <a href="#">Friends</a>
+                          </div>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                          <div class="pull-left">
+                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                          </div>
+                          <div class="pull-right">
+                            <!--<a href='<?=Url::toRoute("/site/logout")?>' class="btn btn-default btn-flat">Desloguear</a>-->
+                            <?= Html::a('Salir',["/site/logout"],['class'=>'btn btn-default btn-flat']) ?>
+                            
+
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+              <?php 
+                  } 
+                } else {
+                  echo Html::a('Entrar',["/site/login"],['class'=>'btn btn-primary']);
+                }
+              ?>
+
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
