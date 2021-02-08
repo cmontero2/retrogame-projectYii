@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\NivelForo */
 
-$this->title = 'Create Nivel Foro';
+$this->title = 'Crear Nivel Foro';
 $this->params['breadcrumbs'][] = ['label' => 'Nivel Foros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

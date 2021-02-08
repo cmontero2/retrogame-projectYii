@@ -1,10 +1,11 @@
 <?php
 
 //use Yii;
+
+use app\models\NivelForo;
 use app\models\Roles;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\Usuarios;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
@@ -44,7 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $data->rol->nombre;
                 }
             ],
-            'nivel_foro_id',
+            ['attribute'=>'nivel_foro_id',
+                'filter'=>NivelForo::lookup(),
+                'value'=>function($data) {
+                return $data->nivelForo->nombre;
+                }
+            ],
             'user',
             'nombre',
             //'contraseña',

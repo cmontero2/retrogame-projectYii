@@ -44,9 +44,10 @@ class UsuariosJuego extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'juego_id' => 'Juego ID',
-            'usuario_id' => 'Usuario ID',
-            'fecha_id' => 'Fecha ID',
+            'id' => 'ID',
+            'juego_id' => 'Juego',
+            'usuario_id' => 'Usuario',
+            'fecha_id' => 'Fecha',
         ];
     }
 

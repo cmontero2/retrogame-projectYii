@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\NivelForo */
 
-$this->title = 'Update Nivel Foro: ' . $model->id;
+$this->title = 'Actualizar Nivel Foro: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Nivel Foros', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
