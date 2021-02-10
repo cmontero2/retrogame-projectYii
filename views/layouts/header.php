@@ -252,7 +252,7 @@ use yii\helpers\Html;
               <?php 
                   } 
                 } else {
-                  echo Html::a('Entrar',["/site/login"],['class'=>'btn btn-primary']);
+                  echo Html::a('Entrar',["/site/login"],['class'=>'btn btn-primary','style'=>'margin-top:10px']);
                 }
               ?>
 

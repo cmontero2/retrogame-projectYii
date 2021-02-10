@@ -15,10 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="usuarios-juego-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Crear Usuarios Juego', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php
+        if(Yii::$app->user->identity){
+            if(Yii::$app->user->identity->username == 'admin'){ 
+                Html::a('Crear Usuarios Juego', ['create'], ['class' => 'btn btn-success']);
+            }
+        }
+    ?>
+    
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -26,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
             ['attribute'=>'juego_id',
                 'filter'=>Juegos::lookup(),
                 'value'=>function($data) {

@@ -8,6 +8,7 @@ use app\models\UsuariosModelSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -24,6 +25,29 @@ class UsuariosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','delete','update'],
+                'rules' => [
+                    ['allow' => true,
+                     'actions' => ['delete', 'update', 'create'],
+                     'matchCallback' => function ($rule, $action) {
+                                           return Yii::$app->user->identity->usuario=="admin";
+                                        }
+ 
+                    ],
+                    [
+                        
+                        //permite aprobar entradas solo a administrador            
+                        'allow' => true,
+                        'actions' => ['aprobarusuarios'],
+                        'matchCallback' => function ($rule, $action) {
+                            return  Yii::$app->user->identity->usuario == "admin"; 
+                        }
+                    ],            
+ 
                 ],
             ],
         ];

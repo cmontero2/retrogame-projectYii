@@ -38,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
 
-            'id',
             ['attribute'=>'rol_id',
                 'filter'=>Roles::lookup(),
                 'value'=>function($data) {
