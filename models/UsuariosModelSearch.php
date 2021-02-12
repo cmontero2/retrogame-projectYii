@@ -38,9 +38,15 @@ class UsuariosModelSearch extends Usuarios
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $aceptadas = false, $aprobar=0)
     {
         $query = Usuarios::find();
+        if (!$aceptadas) {
+            $query->where("estado='A'");
+        }
+        if($aprobar == 1){
+            $query->where("estado='P'");
+        }
 
         // add conditions that should always apply here
 
