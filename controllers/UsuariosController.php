@@ -161,16 +161,12 @@ class UsuariosController extends Controller
         //guardo los post de los check si existen y si no, será 0
         if(isset($_POST['idselec'])){
             $idselec = $_POST['idselec'];
-        } else {
-            $idselec = 0;
-        }
+        
 
-        //si existen checkboxes activos
-        if ($idselec != 0) {
-            $idselec = (array)Yii::$app->request->post('idselec');
-
+            //si existen checkboxes activos   
+            
             foreach (Usuarios::findAll($idselec) as $usuario) {
-                $usuario->estado = 'P';
+                $usuario->estado = 'A';
                 if (!$usuario->save()) {
                     throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
                 }
