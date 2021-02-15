@@ -27,14 +27,16 @@ class UsuariosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['create','delete','update'],
                 'rules' => [
+                    
                     ['allow' => true,
                      'actions' => ['delete', 'update', 'create'],
                      'matchCallback' => function ($rule, $action) {
-                                           return Yii::$app->user->identity->usuario=="admin";
+                                           return !Yii::$app->user->isGuest;
                                         }
  
                     ],
@@ -94,7 +96,7 @@ class UsuariosController extends Controller
         $model->token = bin2hex(random_bytes(5));
         $model->estado = 'P';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -114,7 +116,7 @@ class UsuariosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -150,5 +152,37 @@ class UsuariosController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Aprueba usuarios
+     */
+    public function actionAprobarusuarios(){
+        //guardo los post de los check si existen y si no, será 0
+        if(isset($_POST['idselec'])){
+            $idselec = $_POST['idselec'];
+        } else {
+            $idselec = 0;
+        }
+
+        //si existen checkboxes activos
+        if ($idselec != 0) {
+            $idselec = (array)Yii::$app->request->post('idselec');
+
+            foreach (Usuarios::findAll($idselec) as $usuario) {
+                $usuario->estado = 'P';
+                if (!$usuario->save()) {
+                    throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
+                }
+            }
+            $this->redirect(['index']);
+        } else {
+            $searchModel = new UsuariosModelSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false, 1);
+            return $this->render('administrar', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 }
