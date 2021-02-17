@@ -124,4 +124,15 @@ class JuegosController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionLookup($term) {
+        $results = [];
+        foreach (Juegos::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+             $results[] = [
+                'id' => $model['id'],
+                'label' => $model['nombre'],
+             ];
+        return \yii\helpers\Json::encode($results);
+     }
+    }
 }

@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Usuarios;
 use app\models\Juegos;
+use app\components\THtml;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuariosJuego */
@@ -15,6 +16,8 @@ use app\models\Juegos;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-3">
+    
+        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'],'nombre');?>
         <?php    
             $options=ArrayHelper::map(Juegos::find()->asArray()->all(),'id','nombre');
             echo $form->field($model, 'juego_id')->dropDownList($options,['prompt'=>'Seleccione...', 'style'=>'width:50%']);
