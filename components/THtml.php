@@ -17,7 +17,7 @@ class THtml {
 		echo Typeahead::widget([
 			'name' => $atributo.'_a',
 			'value'=>$model->$relation,
-			'options' => array_merge(['placeholder' => 'Nombre, apellidos, CÃ³digo...'],$options),
+			'options' => array_merge(['placeholder' => 'Inserta tu búsqueda...'],$options),
 			'pluginOptions' => ['highlight'=>true],
 			'pluginEvents' => [
 				"typeahead:select" => 'function(ev, resp) {

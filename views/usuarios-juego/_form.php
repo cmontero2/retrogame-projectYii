@@ -17,7 +17,7 @@ use app\components\THtml;
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-3">
     
-        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'],'nombre');?>
+        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'],'juego_id');?>
         <?php    
             $options=ArrayHelper::map(Juegos::find()->asArray()->all(),'id','nombre');
             echo $form->field($model, 'juego_id')->dropDownList($options,['prompt'=>'Seleccione...', 'style'=>'width:50%']);
