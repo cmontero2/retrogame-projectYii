@@ -52,6 +52,7 @@ class Usuarios extends \yii\db\ActiveRecord
             [['rol_id', 'nivel_foro_id', 'user', 'password', 'email', 'estado', 'token'], 'required'],
             [['rol_id', 'nivel_foro_id', 'telefono'], 'integer'],
             [['nacimiento'], 'safe'],
+            [['telefono'], 'k-phone', 'countryValue' => 'ES'],
             [['password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'user'],
             [['user', 'poblacion'], 'string', 'max' => 30],
             [['nombre', 'password', 'email', 'token'], 'string', 'max' => 60],

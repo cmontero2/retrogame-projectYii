@@ -24,8 +24,7 @@ use kartik\password\PasswordInput;
         <?= $form->field($model, 'nombre')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
     </div>
     <div class="col-md-4">
-        <?= $form->field($model, 'password')->widget(PasswordInput::classname()); ?> 
-        <?php //$form->field($model, 'password')->passwordInput(['style'=>'width:50%']) ?>
+        <?= $form->field($model, 'password')->widget(PasswordInput::classname()); ?>         
         
     </div>
     <div class="col-md-4">
