@@ -18,8 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
