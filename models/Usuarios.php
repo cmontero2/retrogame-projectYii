@@ -43,6 +43,7 @@ class Usuarios extends \yii\db\ActiveRecord
         return 'usuario';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -85,6 +86,10 @@ class Usuarios extends \yii\db\ActiveRecord
             'telefono' => 'Teléfono',
             'token' => 'Token',
         ];
+    }
+
+    public function __toString(){
+        return $this->user;
     }
 
     /**

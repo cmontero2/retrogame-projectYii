@@ -16,10 +16,10 @@ use app\components\THtml;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-3">    
-        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'], 'juego_id');?>
+        <?= $form->field($model, 'juego_id')->dropDownList(Juegos::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);?>
     </div>
     <div class="col-md-3">
-        <?= THtml::autocomplete($model,'usuario_id',['/usuarios/lookup'],'usuario_id');?>
+        <?= THtml::autocomplete($model,'usuario_id',['/usuarios/lookup'],'usuario');?>
     </div>
     <div class="col-md-3">
         <?= $form->field($model, 'fecha_id')->widget(\yii\jui\DatePicker::classname(), [
