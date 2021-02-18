@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-juego-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
@@ -29,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?php /* DetailView::widget([
         'model' => $model,
         'attributes' => [
             ['attribute'=>'juego_id',
@@ -46,6 +44,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'fecha_id',
         ],
-    ]) ?>
+    ])*/ ?>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Juego</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><?= $model->juegos->nombre ?></td>
+            <td><?= $model->usuario->user ?></td>
+            <td><?= \Yii::$app->formatter->asDate($model->fecha_id); ?></td>
+        </tbody>
+    </table>
 
 </div>

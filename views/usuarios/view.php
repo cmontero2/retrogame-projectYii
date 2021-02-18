@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     
-    <?= DetailView::widget([
+    <?php /*DetailView::widget([
         'model' => $model,
         'attributes' => [
             ['attribute'=>'rol_id',
@@ -54,6 +54,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'direccion',
             'telefono',
         ],
-    ]) ?>
+    ])*/ ?>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="m120">Rol</th>
+                <th scope="col">Nivel Foro</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Fecha nacimiento</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Población</th>
+                <th scope="col">CIF</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><?= $model->rol->nombre; ?></td>
+            <td><?= $model->nivelForo->nombre ?></td>
+            <td><?= $model->user ?></td>
+            <td><?= $model->nombre ?></td>
+            <td><?= $model->email ?></td>
+            <td><?= \Yii::$app->formatter->asDate($model->nacimiento); ?></td>
+            <td><?= $model->estado ?></td>
+            <td><?= $model->poblacion ?></td>
+            <td><?= $model->CIF ?></td>
+            <td><?= $model->direccion ?></td>
+            <td><?= $model->telefono ?></td>
+        </tbody>
+    </table>
 
 </div>

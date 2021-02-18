@@ -27,11 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'nombre',
-        ],
-    ]) ?>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><?= $model->nombre ?></td>
+        </tbody>
+    </table>
 
 </div>
