@@ -31,7 +31,9 @@ class Juegos extends \yii\db\ActiveRecord
     {
         return 'juego';
     }
-
+    public function __tostring(){
+        return $this->nombre;
+    }
     /**
      * {@inheritdoc}
      */
