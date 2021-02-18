@@ -181,4 +181,15 @@ class UsuariosController extends Controller
             ]);
         }
     }
+
+    public function actionLookup($term) {
+        $results = [];
+        foreach (Usuarios::find()->andwhere("(user like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+             $results[] = [
+                'id' => $model['id'],
+                'label' => $model['user'],
+             ];
+        return \yii\helpers\Json::encode($results);
+     }
+    }
 }

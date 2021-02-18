@@ -4,6 +4,8 @@ namespace app\models;
 
 use yii\helpers\ArrayHelper;
 
+use kartik\password\StrengthValidator;
+
 use Yii;
 
 /**
@@ -50,6 +52,7 @@ class Usuarios extends \yii\db\ActiveRecord
             [['rol_id', 'nivel_foro_id', 'user', 'password', 'email', 'estado', 'token'], 'required'],
             [['rol_id', 'nivel_foro_id', 'telefono'], 'integer'],
             [['nacimiento'], 'safe'],
+            [['password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'user'],
             [['user', 'poblacion'], 'string', 'max' => 30],
             [['nombre', 'password', 'email', 'token'], 'string', 'max' => 60],
             [['estado'], 'string', 'max' => 1],

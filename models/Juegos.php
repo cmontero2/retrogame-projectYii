@@ -108,4 +108,5 @@ class Juegos extends \yii\db\ActiveRecord
     public static function lookup($condition=''){
         return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }
+
 }

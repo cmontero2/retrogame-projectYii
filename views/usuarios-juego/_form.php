@@ -15,19 +15,11 @@ use app\components\THtml;
 <div class="usuarios-juego-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="col-md-3">
-    
-        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'],'juego_id');?>
-        <?php    
-            $options=ArrayHelper::map(Juegos::find()->asArray()->all(),'id','nombre');
-            echo $form->field($model, 'juego_id')->dropDownList($options,['prompt'=>'Seleccione...', 'style'=>'width:50%']);
-        ?>
+    <div class="col-md-3">    
+        <?= THtml::autocomplete($model,'juego_id',['/juegos/lookup'], 'juego_id');?>
     </div>
     <div class="col-md-3">
-        <?php    
-            $options=ArrayHelper::map(Usuarios::find()->asArray()->all(),'id','user');
-            echo $form->field($model, 'usuario_id')->dropDownList($options,['prompt'=>'Seleccione...', 'style'=>'width:50%']);
-        ?>
+        <?= THtml::autocomplete($model,'usuario_id',['/usuarios/lookup'],'usuario_id');?>
     </div>
     <div class="col-md-3">
         <?= $form->field($model, 'fecha_id')->widget(\yii\jui\DatePicker::classname(), [
