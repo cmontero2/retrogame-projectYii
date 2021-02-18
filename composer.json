@@ -22,7 +22,9 @@
         "dmstr/yii2-adminlte-asset": "^2.1",
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-password": "dev-master",
-        "kartik-v/yii2-validators": "dev-master"
+        "kartik-v/yii2-validators": "dev-master",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "dev-master"
 
     },
     "require-dev": {

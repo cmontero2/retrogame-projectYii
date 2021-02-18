@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $data->usuario->user;
                 }
             ],
-            'fecha_id',
+            'fecha_id:date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Roles;
 use app\components\THtml;
 use kartik\password\PasswordInput;
+use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -23,7 +24,7 @@ use kartik\password\PasswordInput;
     <div class="col-md-4">
         <?= $form->field($model, 'nombre')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <?= $form->field($model, 'password')->widget(PasswordInput::classname()) ?>         
         
     </div>
@@ -45,7 +46,6 @@ use kartik\password\PasswordInput;
     
     <div class="col-md-4">        
         <?php           
-            //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
             echo $form->field($model, 'nivel_foro_id')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);        
         ?>
     </div>
@@ -54,10 +54,8 @@ use kartik\password\PasswordInput;
         
     </div>
     
-    <div class="col-md-4">
-        <?= $form->field($model, 'nacimiento')->widget(\yii\jui\DatePicker::classname(), [
-            'dateFormat' => 'yyyy-MM-dd',  
-        ]) ?>
+    <div class="col-md-3">
+        <?= $form->field($model, 'nacimiento')->widget(DateControl::classname(),['pluginOptions' => ['autoclose'=>true]]);  ?>
     </div>
     
     <div class="col-md-12 form-group">

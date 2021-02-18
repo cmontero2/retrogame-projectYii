@@ -47,13 +47,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'user',
             'nombre',
             'email:email',
-            'nacimiento',
+            'nacimiento:date',
             'estado',
             'poblacion',
             'CIF',
             'direccion',
             'telefono',
-            'estado',
         ],
     ]) ?>
 

@@ -162,15 +162,19 @@ class UsuariosController extends Controller
         if(isset($_POST['idselec'])){
             $idselec = $_POST['idselec'];
         
-
-            //si existen checkboxes activos   
-            
+            //si existen checkboxes activos  
             foreach (Usuarios::findAll($idselec) as $usuario) {
                 $usuario->estado = 'A';
+                
                 if (!$usuario->save()) {
+                    echo "<pre>";
+                    var_dump($usuario);
+                    
+                   
                     throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
                 }
-            }
+                
+            }            
             $this->redirect(['index']);
         } else {
             $searchModel = new UsuariosModelSearch();
