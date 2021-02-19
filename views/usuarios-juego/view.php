@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\ArrayHelper;
 use app\models\Juegos;
 use app\models\Usuarios;
 
@@ -27,24 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php /* DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            ['attribute'=>'juego_id',
-                'filter'=>Juegos::lookup(),
-                'value'=>function($data) {
-                return $data->juegos->nombre;
-                }
-            ],
-            ['attribute'=>'usuario_id',
-                'filter'=>Usuarios::lookup(),
-                'value'=>function($data) {
-                return $data->usuario->user;
-                }
-            ],
-            'fecha_id',
-        ],
-    ])*/ ?>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -54,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
-            <td><?= $model->juegos->nombre ?></td>
-            <td><?= $model->usuario->user ?></td>
+            <td><?= Html::a($model->juegos->nombre,['juegos/view','id'=>$model->juego_id]) ?></td>
+            <td><?= Html::a($model->usuario->user,['usuarios/view','id'=>$model->usuario_id]) ?></td>
             <td><?= \Yii::$app->formatter->asDate($model->fecha_id); ?></td>
         </tbody>
     </table>

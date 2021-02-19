@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\models\Roles;
+use app\models\Usuarios;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Roles */
@@ -13,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="roles-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -37,5 +36,28 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= $model->nombre ?></td>
         </tbody>
     </table>
-
+    <?php
+        $rolesByUser = Usuarios::find()->where("rol_id =".$model->id)->limit(10)->all();
+        echo "Algunos usuarios con este rol: <br>";
+        
+            foreach($rolesByUser as $rol){                
+                
+                $usuario_id = ArrayHelper::getColumn(Usuarios::find()->where("id=".$rol->id)->all(), 'id');                
+                $nombres = ArrayHelper::getColumn(Usuarios::find()->where("id=".$rol->id)->all(), 'user');
+                
+                $ids = "";
+                $usuarioNombre = "";
+                foreach($usuario_id as $id){
+                   $ids = $id;
+                }
+                
+                foreach($nombres as $nombre){
+                    $usuarioNombre = $nombre;
+                }
+                echo Html::a($usuarioNombre,['usuarios/view','id'=>$ids])."<br>";
+                
+                
+            }
+        
+    ?>  
 </div>

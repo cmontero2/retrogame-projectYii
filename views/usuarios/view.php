@@ -3,6 +3,10 @@ use app\models\NivelForo;
 use app\models\Roles;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\UsuariosJuego;
+use app\models\Juegos;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -16,8 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
@@ -28,33 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-    
-    <?php /*DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            ['attribute'=>'rol_id',
-                'filter'=>Roles::lookup(),
-                'value'=>function($data) {
-                return $data->rol->nombre;
-                }
-            ],
-            ['attribute'=>'nivel_foro_id',
-                'filter'=>NivelForo::lookup(),
-                'value'=>function($data) {
-                return $data->nivelForo->nombre;
-                }
-            ],
-            'user',
-            'nombre',
-            'email:email',
-            'nacimiento:date',
-            'estado',
-            'poblacion',
-            'CIF',
-            'direccion',
-            'telefono',
-        ],
-    ])*/ ?>
 
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -86,5 +61,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= $model->telefono ?></td>
         </tbody>
     </table>
-
+        <?php  
+            
+            $juegosByUser = UsuariosJuego::find()->where("usuario_id =".$model->id)->limit(3)->all();      
+            
+            echo "Últimos juegos jugados: <br>";
+            foreach($juegosByUser as $juego){
+                $juego_id = ArrayHelper::getColumn(Juegos::find()->where("id=".$juego->juego_id)->all(), 'id');
+                $juegos = ArrayHelper::getColumn(Juegos::find()->where("id=".$juego->juego_id)->all(), 'nombre');
+                $ids = "";
+                $juegoNombre = "";
+                foreach($juego_id as $id){
+                    $ids = $id;
+                }
+                foreach($juegos as $juego){
+                    $juegoNombre = $juego;
+                }
+                echo Html::a($juegoNombre,['juegos/view','id'=>$ids])."<br>";
+                
+            }
+            
+            
+        ?>
 </div>
