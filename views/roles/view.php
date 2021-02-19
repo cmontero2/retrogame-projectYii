@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </tbody>
     </table>
     <?php
+        echo "<pre>";
         $rolesByUser = Usuarios::find()->where("rol_id =".$model->id)->limit(10)->all();
         echo "Algunos usuarios con este rol: <br>";
         

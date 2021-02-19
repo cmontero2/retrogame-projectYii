@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </tbody>
     </table>
         <?php  
-            
+            echo "<pre>";
             $juegosByUser = UsuariosJuego::find()->where("usuario_id =".$model->id)->limit(3)->all();      
             
             echo "Últimos juegos jugados: <br>";

@@ -39,9 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 
     <?php
+        echo "<pre>";
         $rolesByUser = Usuarios::find()->where("nivel_foro_id =".$model->id)->limit(10)->all();
         echo "Algunos usuarios con este nivel: <br>";
-        
+            
             foreach($rolesByUser as $rol){                
                 
                 $usuario_id = ArrayHelper::getColumn(Usuarios::find()->where("id=".$rol->id)->all(), 'id');                
