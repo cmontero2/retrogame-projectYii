@@ -11,8 +11,10 @@ use Yii;
  * @property string $texto
  * @property string $fecha
  * @property int $entrada_id
+ * @property int $usuario_id
  *
  * @property Entradas $entrada
+ * @property Usuarios $usuario
  */
 class Comentarios extends \yii\db\ActiveRecord
 {
@@ -30,11 +32,12 @@ class Comentarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['texto', 'fecha', 'entrada_id'], 'required'],
+            [['texto', 'fecha', 'entrada_id', 'usuario_id'], 'required'],
             [['fecha'], 'safe'],
-            [['entrada_id'], 'integer'],
+            [['entrada_id', 'usuario_id'], 'integer'],
             [['texto'], 'string', 'max' => 1000],
             [['entrada_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entradas::className(), 'targetAttribute' => ['entrada_id' => 'id']],
+            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
 
@@ -48,6 +51,7 @@ class Comentarios extends \yii\db\ActiveRecord
             'texto' => 'Texto',
             'fecha' => 'Fecha',
             'entrada_id' => 'Entrada ID',
+            'usuario_id' => 'Usuario ID',
         ];
     }
 
@@ -59,5 +63,15 @@ class Comentarios extends \yii\db\ActiveRecord
     public function getEntrada()
     {
         return $this->hasOne(Entradas::className(), ['id' => 'entrada_id']);
+    }
+
+    /**
+     * Gets query for [[Usuario]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuario()
+    {
+        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
     }
 }
