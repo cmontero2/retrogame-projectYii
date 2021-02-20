@@ -31,7 +31,9 @@ class Juegos extends \yii\db\ActiveRecord
     {
         return 'juego';
     }
-
+    public function __tostring(){
+        return $this->nombre;
+    }
     /**
      * {@inheritdoc}
      */
@@ -108,4 +110,5 @@ class Juegos extends \yii\db\ActiveRecord
     public static function lookup($condition=''){
         return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }
+
 }

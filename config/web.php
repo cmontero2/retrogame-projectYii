@@ -1,5 +1,5 @@
 <?php
-
+use kartik\datecontrol\Module;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -11,6 +11,15 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@adminlte/widgets'=>'@vendor/adminlte/yii2-widgets'
+    ],
+    'modules' => [
+        'datecontrol' =>  [
+            'class' => '\kartik\datecontrol\Module',
+            'autoWidget' => true,
+            'autoWidgetSettings' => [
+                Module::FORMAT_DATE => ['type' => 2, 'pluginOptions' => ['autoclose' => true]]
+            ],
+         ]
     ],
     //'defaultRoute'=> '/site/login', //ruta de Retrogame index
     'components' => [
@@ -52,6 +61,19 @@ $config = [
             'rules' => [
                 //aqui puedo meter personalizacion de url
             ],
+        ],
+        'formatter' => [
+
+            'dateFormat' => 'dd/MM/yyyy',
+
+            'datetimeFormat' => 'php:d/m/Y',
+
+            'decimalSeparator' => ',',
+
+            'thousandSeparator' => '.',
+
+            'currencyCode' => 'EUR',
+
         ],
 
         

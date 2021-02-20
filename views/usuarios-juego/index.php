@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-juego-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
@@ -42,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $data->usuario->user;
                 }
             ],
-            'fecha_id',
+            'fecha_id:date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -5,6 +5,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Roles;
+use app\components\THtml;
+use kartik\password\PasswordInput;
+use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -14,18 +17,7 @@ use app\models\Roles;
 <div class="usuarios-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="col-md-4">
-        <?php    
-            //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
-            echo $form->field($model, 'nivel_foro_id')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);
-        ?>
-    </div>
-    <div class="col-md-4">
-        <?php    
-            //$options=ArrayHelper::map(Roles::find()->asArray()->all(),'id','nombre');
-            echo $form->field($model, 'rol_id')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);
-        ?>
-    </div>
+    
     <div class="col-md-4">
         <?= $form->field($model, 'user')->textInput(['style'=>'width:50%','maxlength' => true]) ?>
     </div>
@@ -33,7 +25,8 @@ use app\models\Roles;
         <?= $form->field($model, 'nombre')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
     </div>
     <div class="col-md-4">
-        <?= $form->field($model, 'password')->passwordInput(['style'=>'width:50%']) ?>
+        <?= $form->field($model, 'password')->widget(PasswordInput::classname()) ?>         
+        
     </div>
     <div class="col-md-4">
         <?= $form->field($model, 'email')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
@@ -50,10 +43,19 @@ use app\models\Roles;
     <div class="col-md-4">
         <?= $form->field($model, 'telefono')->textInput(['style'=>'width:50%']) ?>
     </div>
-    <div class="col-md-4">
-        <?= $form->field($model, 'nacimiento')->widget(\yii\jui\DatePicker::classname(), [
-            'dateFormat' => 'yyyy-MM-dd',  
-        ]) ?>
+    
+    <div class="col-md-4">        
+        <?php           
+            echo $form->field($model, 'nivel_foro_id')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);        
+        ?>
+    </div>
+    <div class="col-md-4">        
+        <?= $form->field($model, 'rol_id')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);        ?>    
+        
+    </div>
+    
+    <div class="col-md-3">
+        <?= $form->field($model, 'nacimiento')->widget(DateControl::classname(),['pluginOptions' => ['autoclose'=>true]]);  ?>
     </div>
     
     <div class="col-md-12 form-group">

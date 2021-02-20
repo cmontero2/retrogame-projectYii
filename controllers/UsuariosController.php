@@ -161,20 +161,20 @@ class UsuariosController extends Controller
         //guardo los post de los check si existen y si no, será 0
         if(isset($_POST['idselec'])){
             $idselec = $_POST['idselec'];
-        } else {
-            $idselec = 0;
-        }
-
-        //si existen checkboxes activos
-        if ($idselec != 0) {
-            $idselec = (array)Yii::$app->request->post('idselec');
-
+        
+            //si existen checkboxes activos  
             foreach (Usuarios::findAll($idselec) as $usuario) {
-                $usuario->estado = 'P';
+                $usuario->estado = 'A';
+                
                 if (!$usuario->save()) {
+                    echo "<pre>";
+                    var_dump($usuario);
+                    
+                   
                     throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
                 }
-            }
+                
+            }            
             $this->redirect(['index']);
         } else {
             $searchModel = new UsuariosModelSearch();
@@ -184,5 +184,16 @@ class UsuariosController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
+    }
+
+    public function actionLookup($term) {
+        $results = [];
+        foreach (Usuarios::find()->andwhere("(user like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+             $results[] = [
+                'id' => $model['id'],
+                'label' => $model['user'],
+             ];
+        return \yii\helpers\Json::encode($results);
+     }
     }
 }
