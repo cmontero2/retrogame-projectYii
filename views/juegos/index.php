@@ -18,13 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         if(Yii::$app->user->identity) {
             if(Yii::$app->user->identity->username == 'admin') {
                 echo Html::a('Create Juegos', ['create'], ['class' => 'btn btn-success']);
+                echo Html::a('Aceptar Juegos', ['aceptarjuegos'], ['class' => 'btn btn-primary', 'style'=>'margin-left: 20px']);
             }
         }
     ?>
-
-    <p>
-        <?= Html::a('Create Juegos', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

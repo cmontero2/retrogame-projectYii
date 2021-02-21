@@ -8,6 +8,7 @@ use app\models\JuegosModelSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * JuegosController implements the CRUD actions for Juegos model.
@@ -24,6 +25,31 @@ class JuegosController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','delete','update'],
+                'rules' => [
+                    
+                    [
+                        'allow' => true,
+                        'actions' => ['delete', 'update', 'create'],
+                        'matchCallback' => function ($rule, $action) {
+                                            return !Yii::$app->user->isGuest;
+                                            }
+ 
+                    ],
+                    [
+                                   
+                        'allow' => true,
+                        'actions' => ['aprobarjuegos'],
+                        'matchCallback' => function ($rule, $action) {
+                            return  Yii::$app->user->identity->usuario == "admin"; 
+                        }
+                    ],            
+ 
                 ],
             ],
         ];
@@ -134,5 +160,29 @@ class JuegosController extends Controller
              ];
         return \yii\helpers\Json::encode($results);
      }
+    }
+
+    public function actionAceptarjuegos() {
+
+        if(isset($_POST['ids'])) {
+            $ids = $_POST['ids'];
+
+            foreach(Juego::findAll($ids) as $juego) {
+                $juego->estado = 'A';
+
+                if(!$juego->save()) {
+                    throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
+                }
+            }
+
+            $this->redirect(['index']);
+        } else {
+            $searchModel = new JuegosModelSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false, 1);
+            return $this->render('administrar', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 }
