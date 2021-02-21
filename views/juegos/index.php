@@ -14,9 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Juegos', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php
+        if(Yii::$app->user->identity) {
+            if(Yii::$app->user->identity->username == 'admin') {
+                echo Html::a('Create Juegos', ['create'], ['class' => 'btn btn-success']);
+            }
+        }
+    ?>
+
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -32,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'visitas',
             'empresa_id',
             //'nombre_archivo',
-            //'estado',
+            'estado',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
