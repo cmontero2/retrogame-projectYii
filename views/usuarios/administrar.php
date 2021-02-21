@@ -10,8 +10,11 @@
     <div class="administrar">
 
     <h1><?= Html::encode($this->title) ?></h1>
+        <!--lleva a la accion aprobarusuarios cuando se le da al boton de submit-->
         <?=Html::beginForm(['usuarios/aprobarusuarios'],'post');?>
+        <!-- Boton de submit que lleva a la accion de aprobarusuarios-->
         <?=Html::submitButton('Aprobar', ['class' => 'btn btn-success']); ?>
+        <!--Muestra un grid con un checkbox por registro que envia la id del usuario seleccionado-->
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [

@@ -4,7 +4,7 @@ use Yii;
 use yii\helpers\Html;
 use kartik\typeahead\Typeahead;
 use yii\helpers\Url;
- 
+//permite que funcione el autocomplete 
 class THtml {
 	public static function autocomplete($model,$atributo,$lookupaction,$relation,$options=[]){
 		if(!isset($options['id']))

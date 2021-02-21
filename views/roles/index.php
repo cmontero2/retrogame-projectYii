@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="roles-index">
 
     <?php
+        //si estamos logueados como admin, saldrá el boton de crear un nuevo registro
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
                 echo Html::a('Crear Roles', ['create'], ['class' => 'btn btn-success']);

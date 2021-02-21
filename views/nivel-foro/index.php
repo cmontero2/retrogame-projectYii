@@ -12,14 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nivel-foro-index">
     <?php
+        //si estamos logueados como admin, saldrá el boton de crear un nuevo registro
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
                 echo Html::a('Crear Nivel Foro', ['create'], ['class' => 'btn btn-success']);
             }
         }
     ?>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

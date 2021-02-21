@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
+    <!--Sirve para poder filtrar por los diferentes campos en el index-->
     <?= $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'nombre') ?>

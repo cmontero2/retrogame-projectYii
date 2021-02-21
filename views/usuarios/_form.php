@@ -25,6 +25,7 @@ use kartik\datecontrol\DateControl;
         <?= $form->field($model, 'nombre')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
     </div>
     <div class="col-md-4">
+        <!--Utiliza plugin de password segura-->
         <?= $form->field($model, 'password')->widget(PasswordInput::classname()) ?>         
         
     </div>
@@ -45,16 +46,19 @@ use kartik\datecontrol\DateControl;
     </div>
     
     <div class="col-md-4">        
-        <?php           
+        <?php   
+            //muestra la lista de niveles de foro        
             echo $form->field($model, 'nivel_foro_id')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);        
         ?>
     </div>
-    <div class="col-md-4">        
+    <div class="col-md-4">
+        <!--muestra la lista de roles-->
         <?= $form->field($model, 'rol_id')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']);        ?>    
         
     </div>
     
     <div class="col-md-3">
+        <!--plugin para seleccionar fecha en calendario -->
         <?= $form->field($model, 'nacimiento')->widget(DateControl::classname(),['pluginOptions' => ['autoclose'=>true]]);  ?>
     </div>
     

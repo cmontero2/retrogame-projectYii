@@ -13,6 +13,7 @@ use app\models\NivelForo;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-3">
+        <!-- Muestra los diferentes nombres de nivel de foro existentes en un dropdown-->
         <?= $form->field($model, 'nombre')->dropDownList(NivelForo::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:50%']); ?>
     </div>
     <div class="col-md-3">

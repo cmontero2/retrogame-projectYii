@@ -8,7 +8,9 @@ use app\models\Roles;
 /* @var $model app\models\Roles */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<!--Vista que se utiliza para la creación de roles. 
+Se creó una diferente al form porque el nombre no podía seleccionarse 
+con un dropdown y necesitaba un textinput-->
 <div class="roles-form">
 
     <?php $form = ActiveForm::begin(); ?>

@@ -8,7 +8,9 @@ use app\models\NivelForo;
 /* @var $model app\models\NivelForo */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<!--Vista que se utiliza para la creación de niveles de foro. 
+Se creó una diferente al form porque el nombre no podía seleccionarse 
+con un dropdown y necesitaba un textinput-->
 <div class="nivel-foro-form">
 
     <?php $form = ActiveForm::begin(); ?>
