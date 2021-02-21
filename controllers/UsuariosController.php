@@ -32,7 +32,7 @@ class UsuariosController extends Controller
                 'class' => AccessControl::className(),
                 'only' => ['create','delete','update'],
                 'rules' => [
-                    
+                    //permite crear, borrar y actualizar a los usuarios logueados
                     ['allow' => true,
                      'actions' => ['delete', 'update', 'create'],
                      'matchCallback' => function ($rule, $action) {

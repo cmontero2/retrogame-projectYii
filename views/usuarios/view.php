@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="usuarios-view">
 
     <p>
+        <!--Botones que llevan a la accion update o delete-->
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -53,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= $model->user ?></td>
             <td><?= $model->nombre ?></td>
             <td><?= $model->email ?></td>
-            <td><?= \Yii::$app->formatter->asDate($model->nacimiento); ?></td>
+            <td><?= \Yii::$app->formatter->asDate($model->nacimiento); ?></td> <!--muestra la fecha en formato d/m/y-->
             <td><?= $model->estado ?></td>
             <td><?= $model->poblacion ?></td>
             <td><?= $model->CIF ?></td>
@@ -63,11 +64,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
         <?php  
             echo "<pre>";
+            //muestra los 3 ultimos juegos a los que ha jugado el usuario
+            //busca los juegos
             $juegosByUser = UsuariosJuego::find()->where("usuario_id =".$model->id)->limit(3)->all();      
             
             echo "Últimos juegos jugados: <br>";
+            //recorre el array de juegos
             foreach($juegosByUser as $juego){
+                //extrae la id de juego para redireccionar luego a su vista
                 $juego_id = ArrayHelper::getColumn(Juegos::find()->where("id=".$juego->juego_id)->all(), 'id');
+                //extrae el nombre del juego para mostrarlo en vez de su id
                 $juegos = ArrayHelper::getColumn(Juegos::find()->where("id=".$juego->juego_id)->all(), 'nombre');
                 $ids = "";
                 $juegoNombre = "";
@@ -77,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach($juegos as $juego){
                     $juegoNombre = $juego;
                 }
+                //enlace a la vista de juego
                 echo Html::a($juegoNombre,['juegos/view','id'=>$ids])."<br>";
                 
             }

@@ -12,7 +12,7 @@ use app\models\Roles;
 <div class="roles-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <!-- Muestra los diferentes nombres del rol existentes en un dropdown-->
     <?= $form->field($model, 'nombre')->dropDownList(Roles::lookup(),['prompt'=>'Seleccione...', 'style'=>'width:15%']); ?>
 
     <div class="form-group">

@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="usuarios-index">
 
     <?php
+        //solo se podrá crear usuarios o aprobarlos si es el usuario admin
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
                 echo Html::a('Crear Usuarios', ['create'], ['class' => 'btn btn-success']); 
@@ -28,21 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
         
         
     ?>
-    
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
+            //muestra el nombre del rol en vez de su id
             ['attribute'=>'rol_id',
                 'filter'=>Roles::lookup(),
                 'value'=>function($data) {
                 return $data->rol->nombre;
                 }
             ],
+            //muestra el nombre del nivel del foro en vez de su id
             ['attribute'=>'nivel_foro_id',
                 'filter'=>NivelForo::lookup(),
                 'value'=>function($data) {

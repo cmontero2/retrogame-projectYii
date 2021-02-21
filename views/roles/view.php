@@ -38,12 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
     <?php
         echo "<pre>";
+        //muestra los usuarios con el rol id de la vista
         $rolesByUser = Usuarios::find()->where("rol_id =".$model->id)->limit(10)->all();
         echo "Algunos usuarios con este rol: <br>";
-        
+            //recorre los usuarios filtrados
             foreach($rolesByUser as $rol){                
-                
+                //recoge la id del usuario para luego poder redirigir a su vista
                 $usuario_id = ArrayHelper::getColumn(Usuarios::find()->where("id=".$rol->id)->all(), 'id');                
+                //recoge el nombre del usuario para no mostrar su id 
                 $nombres = ArrayHelper::getColumn(Usuarios::find()->where("id=".$rol->id)->all(), 'user');
                 
                 $ids = "";
@@ -55,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach($nombres as $nombre){
                     $usuarioNombre = $nombre;
                 }
+                //enlace a la vista del usuario mostrando su nombre
                 echo Html::a($usuarioNombre,['usuarios/view','id'=>$ids])."<br>";
                 
                 

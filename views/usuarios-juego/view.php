@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="usuarios-juego-view">
 
     <p>
+        <!--Botones que llevan a la accion update o delete-->
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -36,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
+            <!--Enlace que muestra la informacion de la tabla y lleva a la vista del dato mostrado-->
             <td><?= Html::a($model->juegos->nombre,['juegos/view','id'=>$model->juego_id]) ?></td>
             <td><?= Html::a($model->usuario->user,['usuarios/view','id'=>$model->usuario_id]) ?></td>
             <td><?= \Yii::$app->formatter->asDate($model->fecha_id); ?></td>
