@@ -124,4 +124,16 @@ class RolesController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    //devuelve, segun la id introducida, el nombre del rol
+    public function actionLookup($term) {
+        $results = [];
+        foreach (Roles::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+             $results[] = [
+                'id' => $model['id'],
+                'label' => $model['nombre'],
+             ];
+        return \yii\helpers\Json::encode($results);
+     }
+    }
 }

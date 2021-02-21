@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\ArrayHelper;
 use app\models\Juegos;
 use app\models\Usuarios;
 
@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-juego-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
@@ -29,23 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            ['attribute'=>'juego_id',
-                'filter'=>Juegos::lookup(),
-                'value'=>function($data) {
-                return $data->juegos->nombre;
-                }
-            ],
-            ['attribute'=>'usuario_id',
-                'filter'=>Usuarios::lookup(),
-                'value'=>function($data) {
-                return $data->usuario->user;
-                }
-            ],
-            'fecha_id',
-        ],
-    ]) ?>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Juego</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><?= Html::a($model->juegos->nombre,['juegos/view','id'=>$model->juego_id]) ?></td>
+            <td><?= Html::a($model->usuario->user,['usuarios/view','id'=>$model->usuario_id]) ?></td>
+            <td><?= \Yii::$app->formatter->asDate($model->fecha_id); ?></td>
+        </tbody>
+    </table>
 
 </div>

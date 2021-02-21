@@ -4,6 +4,8 @@ namespace app\models;
 
 use yii\helpers\ArrayHelper;
 
+use kartik\password\StrengthValidator;
+
 use Yii;
 
 /**
@@ -41,6 +43,7 @@ class Usuarios extends \yii\db\ActiveRecord
         return 'usuario';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -50,6 +53,8 @@ class Usuarios extends \yii\db\ActiveRecord
             [['rol_id', 'nivel_foro_id', 'user', 'password', 'email', 'estado', 'token'], 'required'],
             [['rol_id', 'nivel_foro_id', 'telefono'], 'integer'],
             [['nacimiento'], 'safe'],
+            [['telefono'], 'k-phone', 'countryValue' => 'ES'],
+            //[['password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'user'],
             [['user', 'poblacion'], 'string', 'max' => 30],
             [['nombre', 'password', 'email', 'token'], 'string', 'max' => 60],
             [['estado'], 'string', 'max' => 1],
@@ -81,6 +86,10 @@ class Usuarios extends \yii\db\ActiveRecord
             'telefono' => 'Teléfono',
             'token' => 'Token',
         ];
+    }
+
+    public function __toString(){
+        return $this->user;
     }
 
     /**
@@ -143,7 +152,7 @@ class Usuarios extends \yii\db\ActiveRecord
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
     
-    //antes de guardar, crea 
+    //antes de guardar, y si la password introducida no tiene 32 caracteres(estaría ya en md5), convierte la password en md5
     public function beforeSave($insert){
         //guardar md5 pass si la contraseña no tiene 32 caracteres
         if(strlen($this->password) != 32){
@@ -155,6 +164,11 @@ class Usuarios extends \yii\db\ActiveRecord
     //permite buscar una caracteristica especifica de la tabla
     public static function lookup($condition=''){
         return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
+    }
+
+    //formatea la fecha a d/m/y
+    public function getfechaText(){
+        return \Yii::$app->formatter->asDate($this->fecha);
     }
     
 }
