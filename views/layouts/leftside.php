@@ -129,8 +129,7 @@ use yii\helpers\Url;
                                         ]
                                     ]
                                 ],
-                                ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                                ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
+                                
                             ],
                         ]
                         );

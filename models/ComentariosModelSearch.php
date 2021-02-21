@@ -17,7 +17,7 @@ class ComentariosModelSearch extends Comentarios
     public function rules()
     {
         return [
-            [['id', 'entrada_id'], 'integer'],
+            [['id', 'entrada_id', 'usuario_id'], 'integer'],
             [['texto', 'fecha'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class ComentariosModelSearch extends Comentarios
             'id' => $this->id,
             'fecha' => $this->fecha,
             'entrada_id' => $this->entrada_id,
+            'usuario_id' => $this->usuario_id,
         ]);
 
         $query->andFilterWhere(['like', 'texto', $this->texto]);

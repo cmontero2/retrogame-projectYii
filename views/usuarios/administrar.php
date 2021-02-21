@@ -16,9 +16,7 @@
             'dataProvider' => $dataProvider,
             'columns' => [
                 'user',
-                'nombre', 
-                'estado',             
-                
+                'nombre',                
                 ['class' => CheckboxColumn::className(),'name'=>'idselec',
                 'checkboxOptions' => function ($model, $key, $index, $column) {
                             return ['value' => $model->id];

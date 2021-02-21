@@ -11,8 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="roles-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('formCreate', [
         'model' => $model,
     ]) ?>

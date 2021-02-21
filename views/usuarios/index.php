@@ -18,13 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuarios-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
                 echo Html::a('Crear Usuarios', ['create'], ['class' => 'btn btn-success']); 
-                echo Html::a('Administrar usuarios', ['aprobarusuarios'], ['class' => 'btn btn-primary', 'style'=>'margin-left: 20px']); 
+                echo Html::a('Aprobar usuarios', ['aprobarusuarios'], ['class' => 'btn btn-primary', 'style'=>'margin-left: 20px']); 
             }
         }
         
