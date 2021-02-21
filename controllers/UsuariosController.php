@@ -165,18 +165,16 @@ class UsuariosController extends Controller
             //si existen checkboxes activos  
             foreach (Usuarios::findAll($idselec) as $usuario) {
                 $usuario->estado = 'A';
-                
+                //salta un error si no se pudieron guardar los datos
                 if (!$usuario->save()) {
-                    echo "<pre>";
-                    var_dump($usuario);
-                    
-                   
                     throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
                 }
                 
-            }            
+            }  
+            //redirecciona al index          
             $this->redirect(['index']);
         } else {
+            //si no le paso la id de los checkboxes, busca los usuarios no aprobados y renderiza la vista administrar
             $searchModel = new UsuariosModelSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false, 1);
             return $this->render('administrar', [
@@ -186,6 +184,7 @@ class UsuariosController extends Controller
         }
     }
 
+    //devuelve, segun la id introducida, el nombre del usuario
     public function actionLookup($term) {
         $results = [];
         foreach (Usuarios::find()->andwhere("(user like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {

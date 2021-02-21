@@ -152,7 +152,7 @@ class Usuarios extends \yii\db\ActiveRecord
         return $this->hasMany(UsuariosJuego::className(), ['usuario_id' => 'id']);
     }
     
-    //antes de guardar, crea 
+    //antes de guardar, y si la password introducida no tiene 32 caracteres(estaría ya en md5), convierte la password en md5
     public function beforeSave($insert){
         //guardar md5 pass si la contraseña no tiene 32 caracteres
         if(strlen($this->password) != 32){
