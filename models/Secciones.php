@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -67,5 +69,9 @@ class Secciones extends \yii\db\ActiveRecord
     public function getJuego()
     {
         return $this->hasOne(Juegos::className(), ['id' => 'juego_id']);
+    }
+
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','nombre');
     }
 }

@@ -1,7 +1,10 @@
 <?php
 
+use app\models\Secciones;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EntradasModelSearch */
@@ -11,8 +14,6 @@ $this->title = Yii::t('app', 'Entradas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entradas-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
         if(Yii::$app->user->identity){
@@ -29,12 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
-            'id',
             'titulo',
             'texto:ntext',
             'fecha',
-            'estado',
+            [
+                'attribute' => 'seccion_id',
+                'filter' => Secciones::lookup(),
+                'value' => function($data) {
+                    return $data->seccion->nombre;
+                }
+            ],
+            //'estado',
             //'usuario_id',
             //'seccion_id',
 

@@ -2,17 +2,16 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Juegos;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SeccionesModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Secciones';
+$this->title = Yii::t('app', 'Secciones');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="secciones-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
         if(Yii::$app->user->identity){
@@ -31,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'nombre',
-            'juego_id',
+            [
+            'attribute'=>'juego_id',
+            'filter'=>Juegos::lookup(),
+            'value'=>function($data) {
+            //return $data->juego->nombre;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

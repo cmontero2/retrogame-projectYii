@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Entradas;
+use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ComentariosModelSearch */
@@ -11,8 +13,6 @@ $this->title = 'Comentarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comentarios-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
         if(Yii::$app->user->identity){
@@ -29,11 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
             'texto',
             'fecha',
-            'entrada_id',
-            //'usuario_id',
+            [
+                'attribute' => 'entrada_id',
+                
+                'value' => function($data) {
+                    return $data->entrada->titulo;
+                }
+            ],
+
+            [
+                'attribute' => 'usuario_id',
+                'filter' => Usuarios::lookup(),
+                'value' => function($data) {
+                    return $data->usuario->user;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
