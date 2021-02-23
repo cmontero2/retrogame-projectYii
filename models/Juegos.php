@@ -40,12 +40,13 @@ class Juegos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'descripcion', 'visitas', 'empresa_id', 'nombre_archivo', 'estado'], 'required'],
+            [['nombre', 'descripcion', 'visitas', 'empresa_id', 'nombre_archivo', 'estado', 'iframe_url'], 'required'],
             [['visitas', 'empresa_id'], 'integer'],
             [['nombre'], 'string', 'max' => 60],
             [['descripcion'], 'string', 'max' => 400],
             [['nombre_archivo'], 'string', 'max' => 30],
             [['estado'], 'string', 'max' => 1],
+            [['iframe_url'], 'string', 'max' => 200],
             [['empresa_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['empresa_id' => 'id']],
         ];
     }
@@ -60,9 +61,10 @@ class Juegos extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'descripcion' => 'Descripcion',
             'visitas' => 'Visitas',
-            'empresa_id' => 'Empresa ID',
+            'empresa_id' => 'Empresa',
             'nombre_archivo' => 'Nombre Archivo',
             'estado' => 'Estado',
+            'iframe_url' => 'Iframe'
         ];
     }
 

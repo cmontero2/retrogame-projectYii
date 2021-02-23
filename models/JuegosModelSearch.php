@@ -18,7 +18,7 @@ class JuegosModelSearch extends Juegos
     {
         return [
             [['id', 'visitas', 'empresa_id'], 'integer'],
-            [['nombre', 'descripcion', 'nombre_archivo', 'estado'], 'safe'],
+            [['nombre', 'descripcion', 'nombre_archivo', 'estado', 'iframe_url'], 'safe'],
         ];
     }
 
@@ -38,9 +38,17 @@ class JuegosModelSearch extends Juegos
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $aceptadas = false, $aprobar = 0)
     {
         $query = Juegos::find();
+
+        if(!$aceptadas) {
+            $query->where("estado='A'");
+        }
+
+        if($aprobar == 1) {
+            $query ->where("estado='P'");
+        }
 
         // add conditions that should always apply here
 

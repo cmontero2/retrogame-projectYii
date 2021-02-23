@@ -61,12 +61,14 @@ class JuegosController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Juegos();
         $searchModel = new JuegosModelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model
         ]);
     }
 
@@ -91,7 +93,8 @@ class JuegosController extends Controller
     public function actionCreate()
     {
         $model = new Juegos();
-
+        $model->estado = 'P';
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -162,8 +165,12 @@ class JuegosController extends Controller
      }
     }
 
+    //Gestiona la aprobación de los juegos
     public function actionAceptarjuegos() {
 
+        //Comprueba si hay checkboxs seleccionados.
+        //Si los hay, actualiza el estado a Aceptado y redirige a la vista index
+        //Si no los hay, renderiza la vista administrar del model search
         if(isset($_POST['ids'])) {
             $ids = $_POST['ids'];
 

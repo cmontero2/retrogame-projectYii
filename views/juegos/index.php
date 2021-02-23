@@ -1,7 +1,10 @@
 <?php
 
+use app\models\Usuarios;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\JuegosModelSearch */
@@ -11,8 +14,6 @@ $this->title = 'Juegos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="juegos-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
         if(Yii::$app->user->identity) {
@@ -29,15 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
             'nombre',
             'descripcion',
             'visitas',
-            'empresa_id',
-            //'nombre_archivo',
+            [
+                'attribute' => 'empresa_id',
+                'filter' => Usuarios::lookup(),
+                'value' => function($data) {
+                    //return $data->usuario->user;
+                }
+            ],
             'estado',
+            //'nombre_archivo',
+            //'empresa_id',
+            //'id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

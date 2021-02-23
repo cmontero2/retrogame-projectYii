@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\ArrayHelper;
+use app\models\Usuarios;
+use app\models\Juegos;
+use app\models\Categorias;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Juegos */
@@ -26,17 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nombre',
-            'descripcion',
-            'visitas',
-            'empresa_id',
-            'nombre_archivo',
-            'estado',
-        ],
-    ]) ?>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Visitas</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Nombre archivo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Iframe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Enlace que muestra la informacion de la tabla y lleva a la vista del dato mostrado-->
+            <td><?= $model->nombre?></td>
+            <td><?= $model->descripcion?></td>
+            <td><?= $model->visitas?></td>
+            <td><?php// Html::a($model->usuario->user,['usuarios/view','id'=>$model->empresa_id]) ?></td>
+        
+            <td><?= $model->nombre_archivo?></td>
+            <td><?= $model->estado?></td>
+            <td><?= $model->iframe_url?></td>
+        </tbody>
+    </table>
 
 </div>

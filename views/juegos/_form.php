@@ -12,17 +12,29 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'nombre')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'visitas')->textInput() ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'visitas')->textInput(['style'=>'width:20%']) ?>
+    </div>
 
-    <?= $form->field($model, 'empresa_id')->textInput() ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'empresa_id')->textInput(['style'=>'width:20%']) ?>
+    </div>
+    
+    <div class="col-md-4">
+        <?= $form->field($model, 'nombre_archivo')->textInput(['style'=>'width:50%', 'maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'nombre_archivo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'estado')->textInput(['style'=>'width:20%', 'maxlength' => true]) ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

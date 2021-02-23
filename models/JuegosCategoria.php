@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use app\models\Juegos;
 
 /**
  * This is the model class for table "juego_categoria".
@@ -79,5 +81,9 @@ class JuegosCategoria extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
+    }
+
+    public static function lookup($condition = '') {
+        return ArrayHelper::map(self::find()->where($condition)->all(), 'id', 'nombre');
     }
 }
