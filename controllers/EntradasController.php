@@ -8,6 +8,7 @@ use app\models\EntradasModelSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * EntradasController implements the CRUD actions for Entradas model.
@@ -24,6 +25,31 @@ class EntradasController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','delete','update'],
+                'rules' => [
+                    
+                    [
+                        'allow' => true,
+                        'actions' => ['delete', 'update', 'create'],
+                        'matchCallback' => function ($rule, $action) {
+                                            return !Yii::$app->user->isGuest;
+                                            }
+ 
+                    ],
+                    [
+                                   
+                        'allow' => true,
+                        'actions' => ['aprobarentradas'],
+                        'matchCallback' => function ($rule, $action) {
+                            return  Yii::$app->user->identity->usuario == "admin"; 
+                        }
+                    ],            
+ 
                 ],
             ],
         ];
@@ -123,5 +149,43 @@ class EntradasController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionAprobarentradas(){
+        
+        if(isset($_POST['idsel'])){
+            $idsel = $_POST['idsel'];
+        
+              
+            foreach (Entradas::findAll($idsel) as $entrada) {
+                $entrada->estado = 'A';
+                
+                if (!$entrada->save()) {
+                    throw new NotFoundHttpException(Yii::t('app', 'Error al guardar'));
+                }
+                
+            }  
+                     
+            $this->redirect(['index']);
+        } else {
+
+            $searchModel = new EntradasModelSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false, 1);
+            return $this->render('administrar', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+    }
+
+    public function actionLookup($term) {
+        $results = [];
+        foreach (Entradas::find()->andwhere("(titulo like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+             $results[] = [
+                'id' => $model['id'],
+                'label' => $model['titulo'],
+             ];
+        return \yii\helpers\Json::encode($results);
+     }
     }
 }

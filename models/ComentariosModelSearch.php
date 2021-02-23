@@ -46,6 +46,7 @@ class ComentariosModelSearch extends Comentarios
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=>['pageSize'=>5] //paginacion
         ]);
 
         $this->load($params);

@@ -17,7 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
         if(Yii::$app->user->identity){
             if(Yii::$app->user->identity->username == 'admin'){ 
-                echo Html::a('Crear Entradas', ['create'], ['class' => 'btn btn-success']); 
+                echo Html::a('Crear Entradas', ['create'], ['class' => 'btn btn-success']);
+                echo Html::a('Aprobar Entradas', ['aprobarentradas'], ['class' => 'btn btn-primary', 'style'=>'margin-left: 20px']); 
             }
         }
     ?>

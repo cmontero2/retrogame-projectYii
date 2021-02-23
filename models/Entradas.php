@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use yii\helpers\ArrayHelper;
+
 use Yii;
 
 /**
@@ -62,6 +64,10 @@ class Entradas extends \yii\db\ActiveRecord
         ];
     }
 
+    public function __toString(){
+        return $this->titulo;
+    }
+
     /**
      * Gets query for [[Comentarios]].
      *
@@ -90,5 +96,9 @@ class Entradas extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
+    }
+
+    public static function lookup($condition=''){
+        return ArrayHelper::map(self::find()->where($condition)->all(),'id','titulo');
     }
 }

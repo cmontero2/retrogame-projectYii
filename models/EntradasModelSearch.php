@@ -38,14 +38,24 @@ class EntradasModelSearch extends Entradas
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $aceptadas = false, $aprobar=0)
     {
         $query = Entradas::find();
+
+        if (!$aceptadas) {
+            $query->where("estado='A'");
+        }
+        if($aprobar == 1){
+            $query->where("estado='P'");
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            
+            'pagination'=>['pageSize'=>5] //paginacion
+            
         ]);
 
         $this->load($params);
