@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Secciones;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
@@ -12,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="entradas-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -26,17 +25,25 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'titulo',
-            'texto:ntext',
-            'fecha',
-            'estado',
-            'usuario_id',
-            'seccion_id',
-        ],
-    ]) ?>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Texto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Sección</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><?= $model->titulo ?></td>
+            <td><?= $model->texto ?></td>
+            <td><?= \Yii::$app->formatter->asDate($model->fecha) ?></td>
+            <td><?= $model->estado ?></td>
+            <td><?= $model->usuario->user ?></td>
+            <td><?= $model->seccion->nombre ?></td>
+        </tbody>
+    </table>
 
 </div>

@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'texto',
-            'fecha',
+            'fecha:date',
             [
                 'attribute' => 'entrada_id',
                 

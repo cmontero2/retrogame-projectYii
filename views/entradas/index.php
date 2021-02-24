@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'titulo',
             'texto:ntext',
-            'fecha',
+            'fecha:date',
             [
                 'attribute' => 'seccion_id',
                 'filter' => Secciones::lookup(),

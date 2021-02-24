@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Usuarios;
+use app\models\Entradas;
+use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -12,13 +15,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'texto')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'texto')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'fecha')->textInput() ?>
+    <div class="col-md-4">
+    <?= $form->field($model, 'fecha')->widget(DateControl::classname(),['pluginOptions' => ['autoclose'=>true]]);  ?>
+    </div>
 
-    <?= $form->field($model, 'entrada_id')->textInput() ?>
+    <div class="col-md-4">
+    <?= $form->field($model, 'entrada')->dropDownList(Entradas::lookup(),['prompt'=>'Seleccione...']);  ?>
+    </div>
 
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
+    <div class="col-md-4">
+    <?= $form->field($model, 'usuario')->dropDownList(Usuarios::lookup(),['prompt'=>'Seleccione...']);  ?>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
