@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'empresa_id',
                 'filter' => Usuarios::lookup(),
                 'value' => function($data) {
-                    //return $data->usuario->user;
+                    return $data->usuariosNombre;
                 }
             ],
             'estado',

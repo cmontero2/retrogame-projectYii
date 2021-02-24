@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use app\models\Usuarios;
 use yii\helpers\ArrayHelper;
 
 use Yii;
@@ -107,6 +107,12 @@ class Juegos extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UsuariosJuego::className(), ['juego_id' => 'id']);
     }
+
+    public function getUsuariosNombre()
+    {
+        return $this->empresa->user;
+    }
+
 
     //permite buscar una caracteristica especifica de la tabla
     public static function lookup($condition=''){

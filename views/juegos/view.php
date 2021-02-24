@@ -17,8 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="juegos-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -47,8 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= $model->nombre?></td>
             <td><?= $model->descripcion?></td>
             <td><?= $model->visitas?></td>
-            <td><?php// Html::a($model->usuario->user,['usuarios/view','id'=>$model->empresa_id]) ?></td>
-        
+            <td><?php echo Html::a($model->usuariosNombre,['usuarios/view','id'=>$model->empresa_id]) ?></td>        
             <td><?= $model->nombre_archivo?></td>
             <td><?= $model->estado?></td>
             <td><?= $model->iframe_url?></td>
